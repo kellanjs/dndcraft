@@ -1,0 +1,77 @@
+{
+  "name": "@kellanjs/dndcraft",
+  "version": "0.1.0",
+  "description": "Type-safe drag-and-drop rules: declare entities, rules and intents, then handle drops with fully narrowed types.",
+  "keywords": [
+    "drag-and-drop",
+    "dnd",
+    "pragmatic-drag-and-drop",
+    "drop-rules",
+    "intents",
+    "typescript",
+    "type-safety",
+    "type-inference",
+    "fluent-api",
+    "dx"
+  ],
+  "author": "kellanjs",
+  "license": "MIT",
+  "homepage": "https://github.com/kellanjs/dndcraft",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kellanjs/dndcraft.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kellanjs/dndcraft/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "dev": "vitest tests/dndcraft.test.ts",
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "lint": "eslint .",
+    "type": "tsc --noEmit",
+    "type:test": "tsc --noEmit -p tsconfig.test.json",
+    "prepack": "npm run build",
+    "pretest": "npm run build",
+    "test": "vitest run",
+    "pretest:coverage": "npm run build",
+    "test:coverage": "vitest run --coverage",
+    "format": "prettier --write .",
+    "check-format": "prettier --check .",
+    "check-exports": "attw --pack . --ignore-rules cjs-resolves-to-esm",
+    "ci": "npm run lint && npm run type && npm run build && npm run type:test && npm run check-format && npm run check-exports && npm run test"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@eslint/js": "^10.0.1",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+    "@types/node": "^26.6.3",
+    "@vitest/coverage-v8": "^5.0.3",
+    "eslint": "^10.11.0",
+    "prettier": "^3.9.9",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.0",
+    "vitest": "^5.0.3"
+  }
+}
